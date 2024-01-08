@@ -14,7 +14,7 @@ async function sendRecoveryEmail(event) {
         });
 
         if (!response.ok) {
-            throw new Error('Error al enviar solicitud de recuperación de contraseña');
+            throw new Error('<No se encontró el usuario>');
         }
 
         const data = await response.json();
