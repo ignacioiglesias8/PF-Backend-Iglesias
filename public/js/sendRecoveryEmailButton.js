@@ -21,7 +21,7 @@ async function sendRecoveryEmail(event) {
         alert(data.message);
         setTimeout(() => {
             window.location.href = '/login';
-        }, 5000);
+        }, 3000);
     } catch (error) {
         alert(error.message);
     }
