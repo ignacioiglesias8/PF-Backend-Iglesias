@@ -83,7 +83,7 @@ const initializatePassport = () => {
         new GitHubStrategy({
             clientID: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
-            callbackURL: 'http://pf-backend-iglesias-production.up.railway.app/api/sessions/githubcallback'
+            callbackURL: process.env.GITHUB_CALLBACK_URL
             },
         async (req, accessToken, refreshToken, profile, done) => {
             try {
