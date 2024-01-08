@@ -19,7 +19,9 @@ async function sendRecoveryEmail(event) {
 
         const data = await response.json();
         alert(data.message);
-        
+        setTimeout(() => {
+            window.location.href = '/login';
+        }, 5000);
     } catch (error) {
         alert(error.message);
     }

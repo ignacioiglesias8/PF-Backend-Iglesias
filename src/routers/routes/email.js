@@ -22,9 +22,7 @@ router.post('/recovery', async (req, res) => {
 
         sendRecoveryPasswordEmail(token, email)
         
-        setTimeout(() => {
-            res.redirect('/login');
-        }, 3000);
+        res.send("Operación existosa")
     }catch(error){
         req.logger.error(error.message, email);
         res.send(error.message);
