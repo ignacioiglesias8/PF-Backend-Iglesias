@@ -1,0 +1,51 @@
+<h1>Bienvenido {{user.first_name}} {{user.last_name}}</h1>
+<hr>
+
+{{#if isAuth}}
+    <form method="get" action="/manager">
+        <button type="submit">Manager</button>
+    </form>
+{{/if}}
+
+<form method="get" action="/profile">
+    <button type="submit">Perfil</button>
+</form>
+
+<div>
+    <h1>Listado de todos los Productos</h1>
+    <div class="product-list">
+            <div>
+                {{#if products.hasPrevPage}}
+                    <a href={{products.prevLink}}><< Anterior</a>
+                {{/if}}
+            &nbsp;
+                {{products.page}}
+            &nbsp;
+                {{#if products.hasNextPage}}
+                    <a href={{products.nextLink}}>Siguiente >></a>
+                {{/if}} 
+            </div>
+        {{#each products.payload}}
+            <div class="product-card">
+                <h2>{{title}}</h2>
+                <p>{{description}}</p>
+                <p>Precio: {{price}}</p>
+                <p>Stock: {{stock}}</p>
+                <p>Id: {{id}}</p>
+
+            <button class="addToCart" data-product-id="{{id}}">Enviar al carrito</button>
+            </div>
+        {{/each}}
+    </div>
+
+    <form method="get" action="/cart">
+        <button type="submit">Ir al carrito</button>
+    </form>
+
+    <form action="/api/sessions/logout" method="GET">
+        <button type="submit">Cerrar sesión</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/addToCartButtons.js"></script>
