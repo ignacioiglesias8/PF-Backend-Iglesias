@@ -6,7 +6,7 @@ const router = Router();
 const userController = new UserController();
 
 router.post('/recovery', async (req, res) => {
-    try{
+/*    try{
         const {email}= req.body;
         const userResult = await userController.getUserByEmail(email);
 
@@ -26,7 +26,9 @@ router.post('/recovery', async (req, res) => {
     }catch(error){
         req.logger.error(error.message, email);
         res.send(error.message);
-    }
+    }*/
+
+    res.redirect('/login')
 })
 
 export default router;
