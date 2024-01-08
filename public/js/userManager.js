@@ -112,12 +112,15 @@ function changeUserRole(event) {
     .then(response => {
         if (!response.ok) {
             alert("Usuario no encontrado o posee documentación pendiente");
+            throw new Error("Error en la solicitud");
         }
         return response.json();
     })
     .then(data => {
-    alert(data.message);
-    getUser(event);
+        if (data) {
+            alert(data.message);
+            getUser(event);
+        }
     })
     .catch(error => {
         console.error('Error al cambiar el rol del usuario:', error);
