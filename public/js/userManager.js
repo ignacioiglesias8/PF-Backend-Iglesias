@@ -166,7 +166,7 @@ function deleteUser(event) {
     })
     .then(data => {
         alert(data.message);
-        getUser(event);
+        window.location.reload();
     })
     .catch(error => {
         console.error('Error al eliminar el usuario:', error);
