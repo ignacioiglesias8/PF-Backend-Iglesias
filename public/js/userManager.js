@@ -116,8 +116,10 @@ function changeUserRole(event) {
         return response.json();
     })
     .then(data => {
-    alert(data.message);
-    getUser(event);
+    if (data){
+        alert(data.message);
+        getUser(event);
+    }
     })
     .catch(error => {
         console.error('Error al cambiar el rol del usuario:', error);
