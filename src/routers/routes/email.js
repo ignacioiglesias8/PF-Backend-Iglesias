@@ -6,21 +6,27 @@ const router = Router();
 const userController = new UserController();
 
 router.post('/recovery', async (req, res) => {
-    try {
-        const { email } = req.body;
+    try{
+        const {email}= req.body;
+        const userResult = await userController.getUserByEmail(email);
 
-        // Agrega un console.log para imprimir el email en la consola del servidor
-        console.log('Email ingresado:', email);
+        if (userResult.length === 0) throw new Error('Password recovery unavailable: User not found: ');
 
-        // Resto de tu lógica de recuperación de contraseña aquí...
+        const user = {
+            id: userResult[0]._id,
+            email: userResult[0].email,
+        }
 
-        // Envía una respuesta al cliente
-        res.send('Recuperación de contraseña iniciada. Verifica la consola del servidor para el email ingresado.');
-    } catch (error) {
-        // Manejo de errores
+        const token = Math.random().toString(36).substring(7);
+        req.session.resetToken = { user, token, timestamp: Date.now() };
+
+        sendRecoveryPasswordEmail(token, email)
+        
+        res.redirect('/login')
+    }catch(error){
         req.logger.error(error.message, email);
-        res.status(500).send('Error en la recuperación de contraseña.');
+        res.send(error.message);
     }
-});
+})
 
 export default router;
