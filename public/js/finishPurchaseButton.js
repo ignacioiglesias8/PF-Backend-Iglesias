@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 return response.json();
             } else {
+                alert("Es por acá")
                 console.error("Error al finalizar la compra.");
             }
         })
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = '/ticket';
         })
         .catch(function (error) {
+            alert("O por acá")
             console.error("Error al realizar la solicitud:", error);
             });
         });
