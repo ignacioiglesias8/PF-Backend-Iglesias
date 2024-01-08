@@ -5,7 +5,7 @@ import UserController from '../../controllers/UserController.js';
 const router = Router();
 const userController = new UserController();
 
-router.post('/recovery', async (req, res) => {
+router.get('/recovery', async (req, res) => {
     alert("hola mundo")
 /*    try{
         const {email}= req.body;
