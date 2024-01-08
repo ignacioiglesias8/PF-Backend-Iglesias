@@ -22,7 +22,7 @@ router.post('/recovery', async (req, res) => {
 
         sendRecoveryPasswordEmail(token, email)
         
-        res.send("Operación existosa")
+        res.json("Operación existosa")
     }catch(error){
         req.logger.error(error.message, email);
         res.send(error.message);
