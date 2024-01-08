@@ -23,9 +23,6 @@ router.post('/recovery', async (req, res) => {
         sendRecoveryPasswordEmail(token, email)
         
         res.json({ message: 'Solicitud de recuperación de contraseña enviada con éxito' });
-        setTimeout(() => {
-            res.redirect('/login')
-        }, 8000);
     }catch(error){
         req.logger.error(error.message, email);
         res.send(error.message);
