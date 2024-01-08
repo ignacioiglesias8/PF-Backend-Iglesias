@@ -14,7 +14,7 @@ const PORT = process.env.PORT
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 export const sendRecoveryPasswordEmail = async (token, email) => {
-    const link = `http://pf-backend-iglesias-production.up.railway.app/recovery/${token}`
+    const link = `http://localhost:${PORT}/recovery/${token}`
 
     await transport.sendMail({
         from: 'Ecommerce <ignacioiglesias8@gmail.com>',
