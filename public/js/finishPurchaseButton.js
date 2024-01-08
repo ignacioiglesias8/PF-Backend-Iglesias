@@ -13,16 +13,19 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 return response.json();
             } else {
-                alert("Es por acá")
                 console.error("Error al finalizar la compra.");
             }
         })
         .then(function (data) {
             console.log("Ticket generado:", data);
-            window.location.href = '/ticket';
+            if (data.ticket) {
+                window.location.href = '/ticket';
+            } else {
+                throw new Error("No se pudo generar el ticket.");
+            }
         })
         .catch(function (error) {
-            alert("O por acá")
+            alert("No se encuentra esta cantidad de productos en stock");
             console.error("Error al realizar la solicitud:", error);
             });
         });

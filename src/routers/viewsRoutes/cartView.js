@@ -39,7 +39,11 @@ router.post('/purchase', async (req, res) => {
     const cartId = user[0].cart[0].cartInfo;
     const ticket = await ticketsController.generateTicket(cartId, req.session.user.email);
 
-    res.json({ ticket })
+    if (ticket){
+        res.json({ ticket })
+    } else {
+        res.status(403).json({ error: 'No se pudo generar el ticket por falta de stock' });
+    }
 });
 
 export default router;
